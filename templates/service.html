@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 class="title">Afterglow</h1>
+        <nav>
+            <ul class="topnav">
+                <span><li><a href="/">Home</a></li></span>
+                <span><li><a href="/#aboutus">About Us</a></li></span>
+                <span><li><a href="/#services">Services</a></li></span>
+                <span><li><a href="/#appointment">Book Appointment</a></li></span>
+                <span><li><a href="/#contact">Contact Us</a></li></span>
+            </ul>
+        </nav>
+    </header>
+    <div class="servicesboxcontainer">
+        {% for rec in service %}
+            <h3>{{rec.title}}</h3>
+            <p>{{rec.description}}</p>
+        {% endfor %}
+    </div>
+
+    <!-- css section -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        body{
+            width: 100%;
+        }
+        header{  
+            position:fixed;
+            justify-content: flex-end;
+            display: flex;
+            align-items: center;
+            padding: 30px 15%;
+            background: var(--white_txt);
+            overflow: hidden;
+            height: 90px;
+            width: 100%;
+            z-index: 2;
+            box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.02);
+        }
+        .title{
+            margin-right: auto;
+            font-size: 36px;
+            color: var(--black-bg);
+            user-select: none;
+        }
+
+        .topnav li{
+            display: inline-block;
+            padding: 0px 20px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .topnav li a{
+            transition: all 0.3s ease 0s;
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+            color: var(--black-txt);
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .servicesboxcontainer{
+            padding: 30px 30px 30px 30px;
+            height: auto;
+            width: 750px;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+            top: 150px;
+            background-color: white;
+            box-shadow:  0px 6px 15px 0px rgba(0,0,0,0.08);
+            border-radius: 10px;
+        }
+
+        .servicesboxcontainer h3{
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .servicesboxcontainer p{
+            font-size: 18px;
+            line-height: 20px;
+            text-align: justify;
+        }
+    </style>
+</body>
+</html>

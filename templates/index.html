@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterglow</title>
+    <!-- links -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- smooth nav scrolling -->
+    <script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $("a").on('click', function(event) {
+        
+            if (this.hash !== "") {   
+              event.preventDefault();
+              var hash = this.hash;
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+                window.location.hash = hash;
+              });
+            } 
+          });
+        });
+    </script>
+</head>
+<body>
+    <!-- hero page -->
+    <div class="home" id="home">
+        <header>
+            <h1 class="title">Afterglow</h1>
+            <nav>
+                <ul class="topnav">
+                    <span><li><a href="#home">Home</a></li></span>
+                    <span><li><a href="#aboutus">About Us</a></li></span>
+                    <span><li><a href="#services">Services</a></li></span>
+                    <span><li><a href="#appointment">Book Appointment</a></li></span>
+                    <span><li><a href="#contact">Contact Us</a></li></span>
+                </ul>
+            </nav>
+        </header>
+        <div class="hero">
+            <div class="herotext">
+                <div class="circle"></div>
+                <h1>Psychotherapy For your Needs</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et corrupti error repellendus praesentium, id natus quia quam ipsam neque dignissimos accusamus dolorum a temporibus veniam quas dolorem voluptates. Atque, neque.
+                ast vero, odit excepturi ducimus.</p>
+                <button type="button">Get Started</button>
+            </div>
+            <div class="hero_image">
+                <img  class="image" src="{% static 'img/wm.jpg' %}" alt="hero image">
+                <p><i class="fa-solid fa-star"></i> 4.6</p>
+                <p>200+ <i class="fa-solid fa-face-smile"></i></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- about us page -->
+    <div class="aboutus" id="aboutus">
+        <!-- about us section -->
+        <div class="aboutsection">
+            <div class="abouttext">
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sd quisquam odit culpa iste voluptatum quos, id commodi! Autem.</p>
+                <div class="boxcontainer1">
+                    <h3>Who We Are</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quaerat vel magnam alias quo dolore ipsam incidunt suscipit, dignissimos rem, dolorem, commodi magni sint ab? Natus ullam quibusdam veritatis incidunt?</p>
+                </div>
+                <div class="boxcontainer2">
+                    <h3>How We Do</h3>
+                    <p>ipsum Lorem  dolor  Aspernatur quaerat vel magnam alias sit amet consectetur adipisicing elit. Aspernatur quaerat vel magnam alias quo dolore ipsam incidunt suscipit, dignissimos rem, dolorem, commodi magni sint ab? Natus ullam quibusdam veritatis incidunt</p>
+                </div>
+            </div>
+            <div class="about_image">
+                <img  class="aboutusimage" src="{% static 'img/aboutus1.jpg' %}" alt="about us image">
+            </div>
+        </div>
+        <!-- why choose us section -->
+        <div class="whychoosesection">
+            <div class="whychoosetext">
+                <h2>Why Choose Us?</h2>
+                <p>Lorem ipsum dolor sd quisquam odit culpa istes, id commodi! Autem.</p>
+                <div class="whychoosecontainer">
+                    <p>Aspernatur quaerat vel magnam alias quo dolore ipsam incidunt suscipit, dignissimos rem, dolorem, commodi magni sint ab? Natus ullam quibusdam veritatis incidunt?</p>
+                    <p><i class="fa-solid fa-circle-nodes"></i>  Connect With Your Therapist Anytime Anywhere</p>
+                    <p><i class="fa-solid fa-video"></i>  Talk To Our Experts For Your Issues</p>
+                    <p><i class="fa-solid fa-people-group"></i>  Join Our Free-To-Talk Group</p>
+                    <p><i class="fa-solid fa-comments"></i>  Life Time Free Advice With Our Experts</p>
+                </div>
+            </div>
+            <div class="whychoose_image">
+                <img  class="whychooseimage" src="{% static 'img/whychoose1.jpg' %}" alt="about us image">
+            </div>
+        </div>
+    </div>
+
+    <!-- services page -->
+    <div class="services" id="services">
+        <div class="servicessection">
+            <div class="servicestext">
+                <h2>Our Services</h2>
+                <p>Lorem ipsum dolor ste volup commodi! Autem.</p>
+                <div class="servicesmaincontainer">
+                    {% for rec in service %}
+                    <div class="servicesboxcontainer">
+                        <h3>{{rec.title}}</h3>
+                        <p>{{rec.description | truncatechars:200}}</p>
+                        <a href="/service/{{rec.id}}" target="_blank"><button type="button">Learn More <i class="fa-solid fa-arrow-up-right-from-square"></i></button></a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- appointment page -->
+    <div class="appointment" id="appointment">
+        <div class="appointmentsection">
+            <div class="appointmenttext">
+                <form action="/appointment/" method="post">
+                    {% csrf_token %}
+                    <h3>Appointment Form</h3>
+                    <label for="fullname">Full Name</label><br>
+                    <input type="text" name="fullname" id="fullname" placeholder="Enter Full Name" required><br>
+                    <label for="email">Email Address</label><br>
+                    <input type="email" name="email" id="email" placeholder="Enter Email Address" required><br>
+                    <label for="phonenumber">Phone Number</label><br>
+                    <input type="number" name="phonenumber" id="phonenumber" placeholder="Enter Phone Number" required><br>
+                    <label for="servicetype">Service Type</label><br>
+                    <select id="servicetype" name="servicetype">
+                        {% for rec in service %}
+                            {% if rec.title %}
+                                <option value="{{rec.title}}">{{rec.title}}</option>
+                            {% else %}
+                                <option value="">No services available</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select><br>
+                    <input type="submit" id="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- chat with us page -->
+    <div class="chatwithus" id="chatwithus">
+        <div class="chatwithussection">
+            <div class="chatwithustext">
+                <h2>Chat With Us</h2>
+                <p>Need counsel? Talk To Our Experts Now</p>
+                <div class="chatwithuscontainer">
+                    <p>Lorem ipsum dolor sd quisquam odit culpa iste voluptatum quos, id commodi! Autemolor sd quisquam odit olor sd quisquam odit olor sd quisquam odit .</p>
+                    <button type="button">Chat Now</button>
+                </div>
+            </div>
+            <div class="chatwithus_image">
+                <img  class="chatwithusimage" src="{% static 'img/chatwithus.svg' %}" alt="chat with us image">
+            </div>
+        </div>
+    </div>
+
+    <!-- contact us page -->
+    <div class="contact" id="contact">
+        <div class="contactsection">
+            <div class="contacttext">
+                <h3>Contacts</h3>
+                <p>City:</p>
+                <p>San francisco</p><br>
+                <p>Address:</p>
+                <p>3424 Reys Alley, California 94107</p><br>
+                <p>Phone:</p>
+                <p>415-607-3586</p><br>
+                <p>Email:</p>
+                <p>contact@afterglow.com</p>
+                <br><br>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <div class="contactimage">
+                <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Reynolds%20Alley,%20San%20francisco+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container1">
+            <h1>Afterglow</h1>
+            <div class="footer_tab">
+                <div class="tab1">
+                    <h5>Services</h5>
+                    {% for rec in service %}
+                        <p>{{rec.title}}</p>
+                    {% endfor %}
+                </div>
+                <div class="tab2">
+                    <h5>Company</h5>
+                    <p>Social Media</p>
+                    <p>Appointment</p>
+                    <p>Contact</p>
+                </div>
+                <div class="tab3">
+                    <h5>About Us</h5>
+                    <p>We are here for you to listen to your metnal breakdown</p>
+                    <p>415-607-3586</p>
+                    <p>contact@afterglow.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="container2">
+            <p><a href="#"> Privacy Policy</a> <a href="#">Terms & Conditions</a></p>
+            <p>Afterglow {{year}}. All rights reserved</p>
+        </div>
+    </footer>
+    <!----------------------------- scroll to top -------------------------------->     
+    <a href="" class="to-top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
+    <script src="{% static 'js/scroll.js' %}"></script>
+</body>
+</html>
+
